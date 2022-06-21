@@ -13,11 +13,14 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       
-#      - name: Create a single droplet
-#        run: doctl compute droplet create droplet1tests --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region nyc1
+      - name: Craete VPC
+        run: doctl vpcs create --name vpc1-tests --region nyc1 --ip-range 192.168.10.0/24
+      
+      - name: Get VPC info
+        run: doctl vpcs list --format ID,Name | grep vpc1 > temp.txt
 
-      - name: Prueba de comando
-        run: sudo apt-get update
+      - name: Get VPC ID
+        run: awk '{print $1; exit}' temp.txt > tempid.txt
 
-      - name: comando ip
-        run: sudo ip a
+      - name: Create a single droplet and assign it to VPC
+        run: doctl compute droplet create droplet1tests --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region nyc1 --vpc-uuid "$(cat tempid.txt)"
