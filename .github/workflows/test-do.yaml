@@ -14,4 +14,4 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       
       - name: Create a single droplet
-        run: doctl compute droplet create --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region nyc1 droplet1tests_do
+        run: doctl compute droplet create --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region nyc1 droplet1tests-do
