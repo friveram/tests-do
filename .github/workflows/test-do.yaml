@@ -1,0 +1,17 @@
+name: Test en DigitalOcean
+on: [push]
+jobs:
+  create_droplets_vpc:
+    name: Create Droplet in DigitalOcean
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      
+      - name: Create a single droplet
+        run: doctl compute droplet create --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region nyc1 droplet1tests_do
