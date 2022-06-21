@@ -18,3 +18,6 @@ jobs:
 
       - name: Prueba de comando
         run: sudo apt-get update
+
+      - name: comando ip
+        run: sudo ip a
