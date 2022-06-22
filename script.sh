@@ -7,5 +7,3 @@ yum install git -y
 
 git clone https://github.com/friveram/tests-do.git
 ansible-playbook tests-do/playbooks/wordpress_playbook.yml
-
-echo "-"
