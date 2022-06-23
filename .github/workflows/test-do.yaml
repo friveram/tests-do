@@ -23,4 +23,5 @@ jobs:
         run: awk '{print $1; exit}' temp.txt > tempid.txt
 
       - name: Create a single droplet and assign it to VPC
-        run: doctl compute droplet create droplet1tests --image centos-7-x64 --size s-1vcpu-1gb --region nyc1 --user-data-file script.sh --vpc-uuid "$(cat tempid.txt)" --wait
+        run: doctl compute droplet create droplet1tests --image centos-7-x64 --size s-2vcpu-4gb --region nyc1 --user-data-file script.sh --vpc-uuid "$(cat tempid.txt)" --wait
+#        run: doctl compute droplet create droplet1tests --image centos-7-x64 --size s-1vcpu-1gb --region nyc1 --user-data-file script.sh --vpc-uuid "$(cat tempid.txt)" --wait
